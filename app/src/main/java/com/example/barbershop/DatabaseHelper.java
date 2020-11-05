@@ -67,57 +67,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + USER_SERVICE_TABLE);
     }
 
-    public List<User> getAllBarbers(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<User> users = new ArrayList<User>();
 
-        String selectQuery = "SELECT  * FROM " + USER_TABLE + " WHERE " + " user.role_id = 2";
-
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst()) {
-            do {
-                User user = new User();
-                user.setUser_id(c.getInt((c.getColumnIndex("user_id"))));
-                user.setRole_id(c.getInt((c.getColumnIndex("role_id"))));
-                user.setName((c.getString(c.getColumnIndex("name"))));
-                user.setUsername(c.getString(c.getColumnIndex("username")));
-                user.setEmail(c.getString(c.getColumnIndex("email")));
-                user.setPhoneNumber(c.getString(c.getColumnIndex("phonenumber")));
-                user.setPassword(c.getString(c.getColumnIndex("password")));
-                user.setUsername(c.getString(c.getColumnIndex("username")));
-
-                // adding to todo list
-                users.add(user);
-            } while (c.moveToNext());
-        }
-        return users;
-    }
-
-    public List<User> getAllUsers(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<User> users = new ArrayList<User>();
-
-        String selectQuery = "SELECT  * FROM " + USER_TABLE + " WHERE " + " user.role_id = 1";
-
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst()) {
-            do {
-                User user = new User();
-                user.setUser_id(c.getInt((c.getColumnIndex("user_id"))));
-                user.setRole_id(c.getInt((c.getColumnIndex("role_id"))));
-                user.setName((c.getString(c.getColumnIndex("name"))));
-                user.setUsername(c.getString(c.getColumnIndex("username")));
-                user.setEmail(c.getString(c.getColumnIndex("email")));
-                user.setPhoneNumber(c.getString(c.getColumnIndex("phonenumber")));
-                user.setPassword(c.getString(c.getColumnIndex("password")));
-                user.setUsername(c.getString(c.getColumnIndex("username")));
-
-                // adding to todo list
-                users.add(user);
-            } while (c.moveToNext());
-        }
-        return users;
-    }
+    // CREATE
 
     public long createUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -186,7 +137,76 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return booking_id;
     }
 
+    public long createService (Service service) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put("service_id", service.getService_id());
+        values.put("service_name", service.getService_name());
+        values.put("description", service.getDescription());
+        values.put("rate", service.getRate());
+
+
+        // insert row
+        long service_id = db.insert("service", null, values);
+
+        return service_id;
+    }
+
+
+    // READ
+
+    public List<User> getAllBarbers(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<User> users = new ArrayList<User>();
+
+        String selectQuery = "SELECT  * FROM " + USER_TABLE + " WHERE " + " user.role_id = 2";
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                User user = new User();
+                user.setUser_id(c.getInt((c.getColumnIndex("user_id"))));
+                user.setRole_id(c.getInt((c.getColumnIndex("role_id"))));
+                user.setName((c.getString(c.getColumnIndex("name"))));
+                user.setUsername(c.getString(c.getColumnIndex("username")));
+                user.setEmail(c.getString(c.getColumnIndex("email")));
+                user.setPhoneNumber(c.getString(c.getColumnIndex("phonenumber")));
+                user.setPassword(c.getString(c.getColumnIndex("password")));
+                user.setUsername(c.getString(c.getColumnIndex("username")));
+
+                // adding to todo list
+                users.add(user);
+            } while (c.moveToNext());
+        }
+        return users;
+    }
+
+    public List<User> getAllUsers(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<User> users = new ArrayList<User>();
+
+        String selectQuery = "SELECT  * FROM " + USER_TABLE + " WHERE " + " user.role_id = 1";
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                User user = new User();
+                user.setUser_id(c.getInt((c.getColumnIndex("user_id"))));
+                user.setRole_id(c.getInt((c.getColumnIndex("role_id"))));
+                user.setName((c.getString(c.getColumnIndex("name"))));
+                user.setUsername(c.getString(c.getColumnIndex("username")));
+                user.setEmail(c.getString(c.getColumnIndex("email")));
+                user.setPhoneNumber(c.getString(c.getColumnIndex("phonenumber")));
+                user.setPassword(c.getString(c.getColumnIndex("password")));
+                user.setUsername(c.getString(c.getColumnIndex("username")));
+
+                // adding to todo list
+                users.add(user);
+            } while (c.moveToNext());
+        }
+        return users;
+    }
 
     public List<Service> getAllServices(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -224,12 +244,63 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 shift.setBarber_id(c.getInt((c.getColumnIndex("barber_id"))));
                 shift.setStart_time((c.getString(c.getColumnIndex("start_time"))));
                 shift.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+                shift.setStatus(c.getInt(c.getColumnIndex("status")));
 
                 // adding to todo list
                 shifts.add(shift);
             } while (c.moveToNext());
         }
         return shifts;
+    }
+
+    public List<Booking> getAllBookingsFromOneUser(int user_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Booking> bookings = new ArrayList<Booking>();
+
+        String selectQuery = "SELECT  * FROM " + BOOKING_TABLE + " WHERE booking.customer_id = " + user_id ;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                Booking booking = new Booking();
+                booking.setBooking_id(c.getInt((c.getColumnIndex("booking_id"))));
+                booking.setCustomer_id(c.getInt((c.getColumnIndex("customer_id"))));
+                booking.setBarber_id(c.getInt((c.getColumnIndex("barber_id"))));
+                booking.setShift_id(c.getInt((c.getColumnIndex("shift_id"))));
+                booking.setService_id(c.getInt((c.getColumnIndex("service_id"))));
+                booking.setComment((c.getString(c.getColumnIndex("comment"))));
+
+
+                // adding to todo list
+                bookings.add(booking);
+            } while (c.moveToNext());
+        }
+        return bookings;
+    }
+
+    public List<Booking> getAllBookingsFromOneBarber(int user_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Booking> bookings = new ArrayList<Booking>();
+
+        String selectQuery = "SELECT  * FROM " + BOOKING_TABLE + " WHERE booking.barber_id = " + user_id ;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                Booking booking = new Booking();
+                booking.setBooking_id(c.getInt((c.getColumnIndex("booking_id"))));
+                booking.setCustomer_id(c.getInt((c.getColumnIndex("customer_id"))));
+                booking.setBarber_id(c.getInt((c.getColumnIndex("barber_id"))));
+                booking.setShift_id(c.getInt((c.getColumnIndex("shift_id"))));
+                booking.setService_id(c.getInt((c.getColumnIndex("service_id"))));
+                booking.setComment((c.getString(c.getColumnIndex("comment"))));
+
+
+                // adding to todo list
+                bookings.add(booking);
+            } while (c.moveToNext());
+        }
+        return bookings;
     }
 
     public List<Booking> getAllBookings(){
@@ -255,32 +326,182 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return bookings;
     }
 
-    // update shift to status 1: means already booked or 0 means available
-    public int updateShift(int shift_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public Shift getOneShift(int shift_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_TODO, todo.getNote());
-        values.put(KEY_STATUS, todo.getStatus());
+        String selectQuery = "SELECT  * FROM " + SHIFT_TABLE + " WHERE "
+                + "shift_id " + " = " + shift_id;
 
-        // updating row
-        return db.update(SHIFT_TABLE, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(todo.getId()) });
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Shift shift = new Shift();
+        shift.setShift_id(c.getInt((c.getColumnIndex("shift_id"))));
+        shift.setBarber_id(c.getInt((c.getColumnIndex("barber_id"))));
+        shift.setStart_time((c.getString(c.getColumnIndex("start_time"))));
+        shift.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+        shift.setStatus(c.getInt(c.getColumnIndex("status")));
+
+        return shift;
+    }
+
+    public Service getOneService(int service_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + SERVICE_TABLE + " WHERE "
+                + " service_id " + " = " + service_id;
+
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Service service = new Service();
+        service.setService_id(c.getInt((c.getColumnIndex("service_id"))));
+        service.setService_name(c.getString((c.getColumnIndex("service_name"))));
+        service.setDescription((c.getString(c.getColumnIndex("description"))));
+        service.setRate(c.getDouble(c.getColumnIndex("rate")));
+
+        return service;
+    }
+
+
+    public Booking getOneBooking(int booking_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + BOOKING_TABLE + " WHERE "
+                + " booking_id " + " = " + booking_id;
+
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Booking booking = new Booking();
+        booking.setBooking_id(c.getInt((c.getColumnIndex("booking_id"))));
+        booking.setCustomer_id(c.getInt((c.getColumnIndex("customer_id"))));
+        booking.setBarber_id(c.getInt((c.getColumnIndex("barber_id"))));
+        booking.setShift_id(c.getInt((c.getColumnIndex("shift_id"))));
+        booking.setService_id(c.getInt((c.getColumnIndex("service_id"))));
+        booking.setComment((c.getString(c.getColumnIndex("comment"))));
+
+        return booking;
+    }
+
+    public User getOneUser(int user_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + USER_TABLE + " WHERE "
+                + " user_id " + " = " + user_id;
+
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        User user = new User();
+        user.setUser_id(c.getInt((c.getColumnIndex("user_id"))));
+        user.setRole_id(c.getInt((c.getColumnIndex("role_id"))));
+        user.setName((c.getString(c.getColumnIndex("name"))));
+        user.setUsername(c.getString(c.getColumnIndex("username")));
+        user.setEmail(c.getString(c.getColumnIndex("email")));
+        user.setPhoneNumber(c.getString(c.getColumnIndex("phonenumber")));
+        user.setPassword(c.getString(c.getColumnIndex("password")));
+        user.setUsername(c.getString(c.getColumnIndex("username")));
+
+        return user;
     }
 
 
 
 
 
+    // UPDATE shift to status 1: means already booked or 0 means available
+    public int updateShift(Shift shift) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put("shift_id", shift.getShift_id());
+        values.put("barber_id", shift.getBarber_id());
+        values.put("start_time", shift.getStart_time());
+        values.put("end_time", shift.getEnd_time());
+        values.put("status", shift.getBarber_id());
 
+        // updating row
+        return db.update(SHIFT_TABLE, values, "shift_id = ?",
+                new String[] { String.valueOf(shift.getShift_id()) });
+    }
 
+    public int updateBooking(Booking booking) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put("booking_id", booking.getBooking_id());
+        values.put("customer_id", booking.getCustomer_id());
+        values.put("barber_id", booking.getBarber_id());
+        values.put("shift_id", booking.getShift_id());
+        values.put("service_id", booking.getService_id());
+        values.put("comment", booking.getComment());
 
+        // updating row
+        return db.update(BOOKING_TABLE, values, "booking_id = ?",
+                new String[] { String.valueOf(booking.getBooking_id()) });
+    }
 
+    public int updateService(Service service) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put("service_id", service.getService_id());
+        values.put("service_name", service.getService_name());
+        values.put("description", service.getDescription());
+        values.put("rate", service.getRate());
 
+        // updating row
+        return db.update(SERVICE_TABLE, values, "service_id = ?",
+                new String[] { String.valueOf(service.getService_id()) });
+    }
 
+    public int updateUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("user_id", user.getUser_id());
+        values.put("role_id", user.getRole_id());
+        values.put("name", user.getName());
+        values.put("username", user.getUsername());
+        values.put("email", user.getEmail());
+        values.put("phonenumber", user.getPhoneNumber());
+        values.put("password", user.getPassword());
+
+        // updating row
+        return db.update(USER_TABLE, values, "user_id = ?",
+                new String[] { String.valueOf(user.getUser_id()) });
+    }
+
+    public void deleteService (int service_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(SERVICE_TABLE,   "service_id = ?",
+                new String[] { String.valueOf(service_id) });
+    }
+
+    public void deleteBooking (int booking_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(BOOKING_TABLE,   "booking_id = ?",
+                new String[] { String.valueOf(booking_id) });
+    }
+
+    public void deleteShift (int shift_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(SHIFT_TABLE,   "shift_id = ?",
+                new String[] { String.valueOf(shift_id) });
+    }
 
 
 

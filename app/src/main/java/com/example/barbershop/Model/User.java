@@ -20,6 +20,12 @@ public class User {
         this.user_id = user_id;
     }
 
+    public User(String name, String phoneNumber, String password) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
+
     public int getUser_id() {
         return user_id;
     }
