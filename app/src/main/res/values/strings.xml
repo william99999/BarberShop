@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">BarberShop</string>
+    <string name="txtViewTitleOfService">Fit Your Schedule</string>
+    <string name="btnSelectDate">Select Date</string>
+    <string name="btnSelectTime">Select Time</string>
+    <string name="btnSubmitBooking">Finalize</string>
+    <string name="btnLogout">Logout</string>
+    <string name="txtViewBarberLbl">Select Barber</string>
+    <string name="txtViewServiceLbl">Select Service</string>
+    <string-array name="spinnerMT">
+        <item>"AM"</item>
+        <item>"PM"</item>
+    </string-array>
 </resources>

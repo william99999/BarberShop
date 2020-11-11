@@ -65,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + SERVICE_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + SHIFT_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + USER_SERVICE_TABLE);
+
     }
 
 
@@ -318,6 +319,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 booking.setBarber_id(c.getInt((c.getColumnIndex("barber_id"))));
                 booking.setShift_id(c.getInt((c.getColumnIndex("shift_id"))));
                 booking.setService_id(c.getInt((c.getColumnIndex("service_id"))));
+               
                 booking.setComment((c.getString(c.getColumnIndex("comment"))));
 
                 bookings.add(booking);

@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
 
         User_Role role1 = new User_Role(1,"user");
         User_Role role2 = new User_Role(2,"barber");
-        User_Role role3 = new User_Role(1,"admin");
+        User_Role role3 = new User_Role(3,"admin");
 
         db.createUser(user1);
         db.createUser(user2);
@@ -55,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         db.createRole(role3);
 
         List<User> users = db.getAllBarbers();
+
 
         ListView listView = findViewById(R.id.listView);
         BarberAdapter adapter = new BarberAdapter(users);

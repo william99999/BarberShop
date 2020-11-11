@@ -6,29 +6,28 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.barbershop.Model.Service;
 import com.example.barbershop.Model.User;
 import com.example.barbershop.R;
 
 import java.util.List;
 
-public class BarberAdapter extends BaseAdapter {
+public class ServiceAdapter extends BaseAdapter {
+    List<Service> services;
 
-    List<User> users;
-
-
-    public BarberAdapter(List<User> users) {
-        this.users = users;
-
+    public ServiceAdapter(List<Service> services)
+    {
+        this.services=services;
     }
 
     @Override
     public int getCount() {
-        return users.size();
+        return services.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return users.get(position);
+        return services.get(position);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class BarberAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
         if (view == null){
             LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
             view = layoutInflater.inflate(R.layout.item_view,viewGroup,false);
@@ -45,7 +44,8 @@ public class BarberAdapter extends BaseAdapter {
 
         TextView textView1 = view.findViewById(R.id.textView1);
 
-            textView1.setText(users.get(i).getName());
+        textView1.setText(services.get(position).getService_name());
+
 
 
         return view;
