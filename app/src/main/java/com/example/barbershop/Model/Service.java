@@ -9,6 +9,7 @@ public class Service {
 //    String service_table = "CREATE TABLE " + SERVICE_TABLE + " (service_id INTEGER PRIMARY KEY, service_name TEXT, description TEXT, rate REAL)";
 
     public Service() {
+
     }
 
     public int getService_id() {
