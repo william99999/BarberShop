@@ -1,10 +1,11 @@
 package com.example.barbershop.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Shift {
+public class Shift implements Serializable {
 
-    private int shift_id;
+    private Integer shift_id;
     private int barber_id;
     private String start_time;
     private String end_time;
@@ -14,7 +15,7 @@ public class Shift {
     public Shift() {
     }
 
-    public Shift(int shift_id, int barber_id, String start_time, String end_time, int status) {
+    public Shift(Integer shift_id, int barber_id, String start_time, String end_time, int status) {
         this.shift_id = shift_id;
         this.barber_id = barber_id;
         this.start_time = start_time;
@@ -30,11 +31,11 @@ public class Shift {
         this.status = status;
     }
 
-    public int getShift_id() {
+    public Integer getShift_id() {
         return shift_id;
     }
 
-    public void setShift_id(int shift_id) {
+    public void setShift_id(Integer shift_id) {
         this.shift_id = shift_id;
     }
 

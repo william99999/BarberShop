@@ -2,34 +2,23 @@ package com.example.barbershop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 
 import com.example.barbershop.Model.Service;
 import com.example.barbershop.Model.User;
 import com.example.barbershop.Model.User_Role;
-import com.example.barbershop.Model.Users;
 import com.example.barbershop.Prevalent.BarberAdapter;
 import com.example.barbershop.Prevalent.ServiceAdapter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import io.paperdb.Paper;
 

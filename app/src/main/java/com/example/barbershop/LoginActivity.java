@@ -116,6 +116,15 @@ public class LoginActivity extends AppCompatActivity {
         rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //TODO Remove this after
+                if (parentDbName.equals("Admins")) {
+                    Toast.makeText(LoginActivity.this, "Welcome admin, log in successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                    startActivity(intent);
+                    loadingBar.dismiss();
+                }
+
                 if(snapshot.child(parentDbName).child(phoneNum).exists()) {
                     Users usersData = snapshot.child(parentDbName).child(phoneNum).getValue(Users.class);
                     if(usersData.getPhone().equals(phoneNum)) {
@@ -123,6 +132,8 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (parentDbName.equals("Admins")) {
                                 Toast.makeText(LoginActivity.this, "Welcome admin, log in successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                startActivity(intent);
                                 loadingBar.dismiss();
 
                             } else if ( parentDbName.equals("Users")){

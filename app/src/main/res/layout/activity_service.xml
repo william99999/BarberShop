@@ -74,8 +74,8 @@
 
     <Button
         android:id="@+id/btnSelectTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        android:layout_height="31dp"
         android:layout_marginTop="36dp"
         android:background="@android:color/holo_orange_light"
         android:text="@string/btnSelectTime"

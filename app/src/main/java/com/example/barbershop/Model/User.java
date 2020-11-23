@@ -1,10 +1,12 @@
 package com.example.barbershop.Model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String name, username, email, phoneNumber, password;
-    private int role_id;
-    private int user_id;
+    private Integer role_id;
+    private Integer user_id;
 
     public User() {
     }
@@ -26,11 +28,16 @@ public class User {
         this.password = password;
     }
 
-    public int getUser_id() {
+    @Override
+    public String toString() {
+        return user_id + "\t" + name ;
+    }
+
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
@@ -74,11 +81,11 @@ public class User {
         this.password = password;
     }
 
-    public int getRole_id() {
+    public Integer getRole_id() {
         return role_id;
     }
 
-    public void setRole_id(int role_id) {
+    public void setRole_id(Integer role_id) {
         this.role_id = role_id;
     }
 }

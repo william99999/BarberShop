@@ -1,8 +1,10 @@
 package com.example.barbershop.Model;
 
-public class Service {
+import java.io.Serializable;
 
-    private int service_id;
+public class Service implements Serializable {
+
+    private Integer service_id;
     private String service_name;
     private String description;
     private double rate;
@@ -12,11 +14,11 @@ public class Service {
 
     }
 
-    public int getService_id() {
+    public Integer getService_id() {
         return service_id;
     }
 
-    public void setService_id(int service_id) {
+    public void setService_id(Integer service_id) {
         this.service_id = service_id;
     }
 

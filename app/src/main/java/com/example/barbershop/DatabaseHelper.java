@@ -3,11 +3,9 @@ package com.example.barbershop;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.barbershop.Model.Booking;
@@ -73,7 +71,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public long createUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put("user_id", user.getUser_id());
         values.put("role_id", user.getRole_id());
@@ -82,11 +79,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put("email", user.getEmail());
         values.put("phonenumber", user.getPhoneNumber());
         values.put("password", user.getPassword());
-
-
         // insert row
         long user_id = db.insert("user", null, values);
-
+       // db.close();
         return user_id;
     }
 
@@ -504,6 +499,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.delete(SHIFT_TABLE,   "shift_id = ?",
                 new String[] { String.valueOf(shift_id) });
     }
+
+    public void deleteUser (int user_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(USER_TABLE,   "user_id = ?",
+                new String[] { String.valueOf(user_id) });
+    }
+
 
 
 
