@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -106,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
         if(chkBoxRememberMe.isChecked() && parentDbName=="Users"){
             Paper.book().write(Prevalent.userPhoneKey, phoneNum);
             Paper.book().write(Prevalent.userPasswordKey, pass);
+            Toast.makeText(LoginActivity.this, "papaer userphonekey = " + Paper.book().read(Prevalent.userPhoneKey), Toast.LENGTH_SHORT).show();
         }
 
 
@@ -124,11 +127,21 @@ public class LoginActivity extends AppCompatActivity {
                             if (parentDbName.equals("Admins")) {
                                 Toast.makeText(LoginActivity.this, "Welcome admin, log in successfully", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
+                                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("phonenum", phoneNum);
+                                editor.commit();
 
                             } else if ( parentDbName.equals("Users")){
 
                                 Toast.makeText(LoginActivity.this, "Login successfully.", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
+
+                                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("phonenum", phoneNum);
+                                editor.commit();
+
                                 Intent intent = new Intent(LoginActivity.this, serviceActivity.class);
                                 startActivity(intent);
                             }

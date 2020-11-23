@@ -8,8 +8,15 @@ public class Service {
     private double rate;
 //    String service_table = "CREATE TABLE " + SERVICE_TABLE + " (service_id INTEGER PRIMARY KEY, service_name TEXT, description TEXT, rate REAL)";
 
-    public Service() {
 
+    public Service() {
+    }
+
+    public Service(int service_id, String service_name, String description, double rate) {
+        this.service_id = service_id;
+        this.service_name = service_name;
+        this.description = description;
+        this.rate = rate;
     }
 
     public int getService_id() {
