@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".EditBarberScheduleActivity"></activity>
         <activity android:name=".ManageSchedule2Activity" />
         <activity android:name=".ManageScheduleActivity" />
@@ -21,6 +22,7 @@
         <activity android:name=".BarberManageActivity" />
         <activity android:name=".ManageBarberActivity" />
         <activity android:name=".AdminHomeActivity" />
+        <activity android:name=".EditBookingActivity"></activity>
         <activity android:name=".ReviewActivity" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".serviceActivity" />

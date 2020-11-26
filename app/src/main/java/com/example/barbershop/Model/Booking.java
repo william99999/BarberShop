@@ -3,21 +3,26 @@ package com.example.barbershop.Model;
 public class Booking {
 
     private int booking_id;
-    private int customer_id;
-    private int barber_id;
+    private String customer_id;
+    private String barber_id;
     private int shift_id;
     private int service_id;
-    private String comment;
 
 //    (booking_id INTEGER PRIMARY KEY, customer_id INTEGER, barber_id INTEGER, shift_id INTEGER, service_id INTEGER, comment TEXT)";
 
-    public Booking(int booking_id, int customer_id, int barber_id, int shift_id, int service_id, String comment) {
+    public Booking(int booking_id, String customer_id, String barber_id, int shift_id, int service_id) {
         this.booking_id = booking_id;
         this.customer_id = customer_id;
         this.barber_id = barber_id;
         this.shift_id = shift_id;
         this.service_id = service_id;
-        this.comment = comment;
+    }
+    public Booking( String customer_id, String barber_id, int shift_id, int service_id) {
+
+        this.customer_id = customer_id;
+        this.barber_id = barber_id;
+        this.shift_id = shift_id;
+        this.service_id = service_id;
     }
 
     public Booking() {
@@ -31,19 +36,19 @@ public class Booking {
         this.booking_id = booking_id;
     }
 
-    public int getCustomer_id() {
+    public String getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
 
-    public int getBarber_id() {
+    public String getBarber_id() {
         return barber_id;
     }
 
-    public void setBarber_id(int barber_id) {
+    public void setBarber_id(String barber_id) {
         this.barber_id = barber_id;
     }
 
@@ -63,11 +68,5 @@ public class Booking {
         this.service_id = service_id;
     }
 
-    public String getComment() {
-        return comment;
-    }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 }

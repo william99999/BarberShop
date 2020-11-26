@@ -4,6 +4,7 @@
     <string name="btnSelectDate">Select Date</string>
     <string name="btnSelectTime">Select Time</string>
     <string name="btnSubmitBooking">Finalize</string>
+    <string name="btnAddService">Add Service</string>
     <string name="btnLogout">Logout</string>
     <string name="txtViewBarberLbl">Select Barber</string>
     <string name="txtViewServiceLbl">Select Service</string>
