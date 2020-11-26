@@ -54,7 +54,7 @@ public class EditBarberActivity extends AppCompatActivity {
             public void onClick(View view) {
                 User userCreate = new User();
                 userCreate.setUser_id(user.getUser_id());
-                userCreate.setPassword("");
+                //userCreate.setPassword("");
                 userCreate.setEmail(email.getText().toString());
                 userCreate.setUsername(userName.getText().toString());
                 userCreate.setName(name.getText().toString());
@@ -64,10 +64,10 @@ public class EditBarberActivity extends AppCompatActivity {
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 if (userCreate.getUser_id() != null) {
                     db.updateUser(userCreate);
-                    Toast.makeText(view.getContext(), "User : " + userCreate.getName() + " Created", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "User : " + userCreate.getName() + " Updated", Toast.LENGTH_SHORT).show();
                 } else {
                     db.createUser(userCreate);
-                    Toast.makeText(view.getContext(), "User : " + userCreate.getName() + " Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "User : " + userCreate.getName() + " Created", Toast.LENGTH_SHORT).show();
                 }
                 Intent intent = new Intent(EditBarberActivity.this, ManageBarberActivity.class);
                 startActivity(intent);
