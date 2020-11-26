@@ -4,12 +4,33 @@
     <string name="btnSelectDate">Select Date</string>
     <string name="btnSelectTime">Select Time</string>
     <string name="btnSubmitBooking">Finalize</string>
-    <string name="btnAddService">Add Service</string>
     <string name="btnLogout">Logout</string>
     <string name="txtViewBarberLbl">Select Barber</string>
     <string name="txtViewServiceLbl">Select Service</string>
+    <string name="value_admin_home">Test User</string>
+    <string name="ManageBarber">Manage Barber</string>
+    <string name="ManageServices">Manage Services</string>
+    <string name="ManageSchedule">Manage Schedule</string>
+    <string name="AddBarber">Add Barber</string>
+    <string name="BarberSchedule">Click on Barber to Manage schedule</string>
+    <string name="AddService">Add Service</string>
+    <string name="AddSchedule">Add Schedule</string>
+    <string name="BarberName">Barber Name</string>
+    <string name="Add">Add</string>
+    <string name="Update">Update</string>
+    <string name="Delete">Delete</string>
+    <string name="Submit">Submit</string>
     <string-array name="spinnerMT">
         <item>"AM"</item>
         <item>"PM"</item>
     </string-array>
+    <string name="title_activity_manage_service">ManageServiceActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

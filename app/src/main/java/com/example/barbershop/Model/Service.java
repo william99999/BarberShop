@@ -1,29 +1,24 @@
 package com.example.barbershop.Model;
 
-public class Service {
+import java.io.Serializable;
 
-    private int service_id;
+public class Service implements Serializable {
+
+    private Integer service_id;
     private String service_name;
     private String description;
     private double rate;
 //    String service_table = "CREATE TABLE " + SERVICE_TABLE + " (service_id INTEGER PRIMARY KEY, service_name TEXT, description TEXT, rate REAL)";
 
-
     public Service() {
+
     }
 
-    public Service(int service_id, String service_name, String description, double rate) {
-        this.service_id = service_id;
-        this.service_name = service_name;
-        this.description = description;
-        this.rate = rate;
-    }
-
-    public int getService_id() {
+    public Integer getService_id() {
         return service_id;
     }
 
-    public void setService_id(int service_id) {
+    public void setService_id(Integer service_id) {
         this.service_id = service_id;
     }
 
